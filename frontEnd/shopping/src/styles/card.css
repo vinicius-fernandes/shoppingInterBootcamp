@@ -1,0 +1,6 @@
+.ContainerCard{
+    -webkit-box-shadow: 5px 9px 34px 1px rgba(0,0,0,0.33); 
+    box-shadow: 5px 9px 34px 1px rgba(0,0,0,0.33);
+border-radius: 5px;
+    background-color:ghostwhite;
+}
