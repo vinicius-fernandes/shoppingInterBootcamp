@@ -21,6 +21,10 @@ export class CreateMessages1626289618299 implements MigrationInterface {
                         type: "varchar"
                     },
                     {
+                        name: "nota",
+                        type: "number"
+                    },
+                    {
                         name: "created_at",
                         type: "timestamp",
                         default: "now()"

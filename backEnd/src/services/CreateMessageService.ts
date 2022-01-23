@@ -3,11 +3,12 @@ import { MessagesRepository } from "../repository/MessagesRepository";
 
 interface IMessage {
     email: string;
-    message: string
+    message: string;
+    nota:number;
 }
 
 class CreateMessageService {
-    async execute({email, message}: IMessage){
+    async execute({email, message,nota}: IMessage){
         const messageRepository = getCustomRepository(MessagesRepository);
 
         if(!email){
@@ -18,7 +19,7 @@ class CreateMessageService {
             throw new Error("Por favor escreva uma messagem!")
         }
 
-        const newMessage = messageRepository.create({ email, message })
+        const newMessage = messageRepository.create({ email, message,nota })
 
         await messageRepository.save(newMessage);
 

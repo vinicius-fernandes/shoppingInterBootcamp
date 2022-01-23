@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Grid, Button, TextField } from '@material-ui/core/';
 
-const Contatos = () => {
+const Avaliacoes = () => {
 
     const url = 'http://localhost:5000/message'
     const [message, setMessage] = useState([]);
     const [author, setAuthor] = useState('');
     const [content, setContent] = useState('');
+    const [nota, setNota] = useState(0);
     const [validator, setValidator] = useState(false);
     const [render, setRender] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -25,6 +26,7 @@ const Contatos = () => {
         const bodyForm = {
             email: author,
             message: content,
+            nota: nota
         }
 
         fetch(url, {
@@ -56,6 +58,7 @@ const Contatos = () => {
             <div className="row m-5">
                 <TextField id="name" label="Nome" value={author} onChange={(event)=>{setAuthor(event.target.value)}} fullWidth/>
                 <TextField id="message" label="Mensagem" value={content} onChange={(event)=>{setContent(event.target.value)}} fullWidth/>
+                <TextField id="nota"  label="Nota" type="number" value={nota} onChange={(event)=>{setNota(event.target.value)}} fullWidth/>
 
             {validator && 
                 <div className="alert alert-warning alert-dismissible fade show mt-2" role="alert">
@@ -81,6 +84,8 @@ const Contatos = () => {
                         <div className="card-body">
                             <h5 className="card-title">{content.email}</h5>
                             <p className="card-text">{content.message}</p>
+                            <p className="card-text">Nota : {content.nota}</p>
+
                             <p className="card-text"><small className="text-muted">{content.created_at}</small></p>
                         </div>
                     </div>
@@ -90,4 +95,4 @@ const Contatos = () => {
     )
 }
 
-export default Contatos;
+export default Avaliacoes;

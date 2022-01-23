@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './Pages/home';
-import Contatos from './Pages/contato';
+import Avaliacoes from './Pages/avaliacoes';
 
 const MainRoutes = () => {
     return(
@@ -11,8 +11,8 @@ const MainRoutes = () => {
                 element={<HomePage />}
             />
             <Route
-                path="/contato"
-                element={<Contatos />}
+                path="/avaliacoes"
+                element={<Avaliacoes />}
             />
         </Routes>
     )

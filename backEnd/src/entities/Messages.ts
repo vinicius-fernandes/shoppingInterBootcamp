@@ -12,6 +12,9 @@ class Message {
     @Column()
     message: string;
 
+    @Column()
+    nota: number;
+
     @CreateDateColumn()
     created_at: Date;
 
