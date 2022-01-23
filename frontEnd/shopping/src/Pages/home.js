@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import { useSelector } from 'react-redux';
-import { Paper, Grid, Typography, List, makeStyles } from '@material-ui/core/';
+import { Paper, Button, Typography, List, makeStyles } from '@material-ui/core/';
 import Item from '../components/Item';
 import Card from '../components/Card';
 
@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const HomePage = () => {
-    const products = useSelector(state => state.products)
+    const productsFromSelector = useSelector(state => state.products)
+    const [products,setProducts]= useState(productsFromSelector);
     const classes = useStyles();
 
     const categorys = products.map(
@@ -37,13 +38,21 @@ const HomePage = () => {
     const arrayCategory = categorys.map(category => category.name)
     let count = { };
 
-    for(let i = 0; i < arrayCategory.length; i++){
-        {
+    for(let i = 0; i < arrayCategory.length; i++){    
             let key = arrayCategory[i];
-            count[key] = (count[key] ? count[key] + 1 : 1)
-        }
+            count[key] = (count[key] ? count[key] + 1 : 1)    
     }
 
+    function filterByCategoria(categoria){
+        if(categoria){
+        let productsFiltered = products.filter(product=>  {return product.name_categorys===categoria});
+        setProducts(productsFiltered);
+        }
+        else{
+            setProducts(productsFromSelector);
+
+        }
+    }
     return(
         <div class="container mt-3">
         <div className="row ">
@@ -53,14 +62,20 @@ const HomePage = () => {
                         Categorias
                     </Typography>
                     <List>
+                        <button class="btn btn-primary border w-100 m-1" key="LimparFiltros" onClick={() => filterByCategoria()}>
+                            Limpar filtros
+                        </button>
                         {category.map(
                             category => {
                                 return (
+                               <button class="btn btn-default border w-100 m-1" key = {category.id}  onClick={() => filterByCategoria(category.name)}>
                                     <Item
-                                        key = {category.id} 
+                                        
                                         name= {category.name}
                                         details={count[category.name]}
+                                       
                                     />
+                            </button>
                                 )
                             }
                         )}
